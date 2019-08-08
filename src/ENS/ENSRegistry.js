@@ -1,5 +1,6 @@
 import Web3 from "web3";
 import namehash from "eth-ens-namehash";
+import { resolve } from "path";
 
 const registryABI = [
   {
@@ -209,15 +210,34 @@ class ENSRegistry {
 
     this.web3 = new Web3('https://mainnet.infura.io');
     this.address = '0x314159265dD8dbb310642f98f50C066173C1259b';
+    this.registry = new this.web3.eth.Contract(registryABI, this.address);
   }
 
   async getOwner(name) {
     try {
-      const token = new this.web3.eth.Contract(registryABI, this.address);
-
-      const owner = await token.methods.owner(namehash.hash(name)).call();
+      const owner = await this.registry.methods.owner(namehash.hash(name)).call();
 
       return owner;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getResolver(name) {
+    try {
+      const resolver = await this.registry.methods.resolver(namehash.hash(name)).call();
+
+      return resolver;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getTtl(name) {
+    try {
+      const ttl = await this.registry.methods.ttl(namehash.hash(name)).call();
+
+      return ttl;
     } catch (err) {
       console.log(err);
     }
