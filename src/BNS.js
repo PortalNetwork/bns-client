@@ -1,4 +1,5 @@
 import ENSRegistry from './ENS/ENSRegistry';
+import ENSResolver from './ENS/ENSResolver';
 
 class BNS {
   constructor(config) {
@@ -9,6 +10,7 @@ class BNS {
     }
 
     this.ENSRegistry = new ENSRegistry();
+    this.ENSResolver = new ENSResolver();
   }
 }
 
