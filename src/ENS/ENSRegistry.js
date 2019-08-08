@@ -1,6 +1,5 @@
 import Web3 from "web3";
 import namehash from "eth-ens-namehash";
-import { resolve } from "path";
 
 const registryABI = [
   {
