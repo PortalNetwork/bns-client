@@ -1,6 +1,6 @@
 import ENSRegistry from './ENS/ENSRegistry';
 import ENSResolver from './ENS/ENSResolver';
-import ETHRegistrarController from './ETHRegistrarController';
+import ETHRegistrarController from './ENS/ETHRegistrarController';
 
 class BNS {
   constructor(config) {
