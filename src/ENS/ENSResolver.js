@@ -13,8 +13,19 @@ class ENSResolver {
   async getAddress(name) {
     try {
       const address = await this.resolver.methods.addr(namehash.hash(name)).call();
-      
+
       return address;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async setAddress(name, address) {
+    try {
+      let byteData = "0x" +
+        abi.methodID("setAddr", ["bytes32", "address"]).toString("hex") +
+        abi.rawEncode(["bytes32", "address"], [namehash.hash(name), address]).toString("hex");
+      return byteData;
     } catch (err) {
       console.log(err);
     }
@@ -30,11 +41,33 @@ class ENSResolver {
     }
   }
 
+  async setText(name, key, value) {
+    try {
+      let byteData = "0x" +
+        abi.methodID("setText", ["bytes32", "string", "string"]).toString("hex") +
+        abi.rawEncode(["bytes32", "string", "string"], [namehash.hash(name), key, value]).toString("hex");
+      return byteData;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async getContent(name) {
     try {
       const contentHash = await this.resolver.methods.content(namehash.hash(name)).call();
 
       return contentHash;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async setContent(name, content) {
+    try {
+      let byteData = "0x" +
+        abi.methodID("setContent", ["bytes32", "bytes32"]).toString("hex") +
+        abi.rawEncode(["bytes32", "bytes32"], [namehash.hash(name), content]).toString("hex");
+      return byteData;
     } catch (err) {
       console.log(err);
     }

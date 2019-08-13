@@ -232,11 +232,33 @@ class ENSRegistry {
     }
   }
 
+  async setResolver(name, address) {
+    try {
+      let byteData = "0x" +
+        abi.methodID("setResolver", ["bytes32", "address"]).toString("hex") +
+        abi.rawEncode(["bytes32", "address"], [namehash.hash(name), address]).toString("hex");
+      return byteData;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async getTtl(name) {
     try {
       const ttl = await this.registry.methods.ttl(namehash.hash(name)).call();
 
       return ttl;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async setTtl(name, ttl) {
+    try {
+      let byteData = "0x" +
+        abi.methodID("setTTL", ["bytes32", "uint64"]).toString("hex") +
+        abi.rawEncode(["bytes32", "uint64"], [namehash.hash(name), ttl]).toString("hex");
+      return byteData;
     } catch (err) {
       console.log(err);
     }
