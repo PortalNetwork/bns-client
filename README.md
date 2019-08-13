@@ -1,6 +1,13 @@
-# BNS Client
+# Blockchain Name Service Client
 
 `bns-client` is a javascript library to interact with all the BNS methods. It can help for creating client and server apps to connect with BNS.
+
+## Get Start
+Use this commands in the console:
+
+```
+npm install bns-client
+```
 
 ## Usage
 
