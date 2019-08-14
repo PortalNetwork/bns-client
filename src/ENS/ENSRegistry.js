@@ -205,9 +205,12 @@ const registryABI = [
 
 class ENSRegistry {
   constructor(config) {
-    //this.provider = config.provider;
+    if(!(config && config.provider && config.provider !== '')) {
+      this.provider = 'https://mainnet.infura.io';
+    }
 
-    this.web3 = new Web3('https://mainnet.infura.io');
+    this.web3 = new Web3(this.provider);
+
     this.address = '0x314159265dD8dbb310642f98f50C066173C1259b';
     this.registry = new this.web3.eth.Contract(registryABI, this.address);
   }

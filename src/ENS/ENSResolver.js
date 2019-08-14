@@ -5,7 +5,12 @@ const resolverABI = [{"constant":true,"inputs":[{"name":"interfaceID","type":"by
 
 class ENSResolver {
   constructor(config) {
-    this.web3 = new Web3('https://mainnet.infura.io');
+    if(!(config && config.provider && config.provider !== '')) {
+      this.provider = 'https://mainnet.infura.io';
+    }
+
+    this.web3 = new Web3(this.provider);
+
     this.address = '0x1da022710dF5002339274AaDEe8D58218e9D6AB5';
     this.resolver = new this.web3.eth.Contract(resolverABI, this.address);
   }

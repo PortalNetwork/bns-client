@@ -4,15 +4,9 @@ import ETHRegistrarController from './ENS/ETHRegistrarController';
 
 class BNS {
   constructor(config) {
-    if(config && config.provider && config.provider !== '') {
-      this.provider = config.provider;
-    } else {
-      this.provider = 'https://mainnet.infura.io';
-    }
-
-    this.ENSRegistry = new ENSRegistry();
-    this.ENSResolver = new ENSResolver();
-    this.ETHRegistrarController = new ETHRegistrarController();
+    this.ENSRegistry = new ENSRegistry(config);
+    this.ENSResolver = new ENSResolver(config);
+    this.ETHRegistrarController = new ETHRegistrarController(config);
   }
 }
 

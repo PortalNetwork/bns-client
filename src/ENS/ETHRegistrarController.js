@@ -5,7 +5,11 @@ const ethRegistrarControllerABI = [{"constant":true,"inputs":[{"name":"interface
 
 class ETHRegistrarController {
   constructor(config) {
-    this.web3 = new Web3('https://mainnet.infura.io');
+    if(!(config && config.provider && config.provider !== '')) {
+      this.provider = 'https://mainnet.infura.io';
+    }
+
+    this.web3 = new Web3(this.provider);
     this.address = '0xF0AD5cAd05e10572EfcEB849f6Ff0c68f9700455';
     this.ethRegistrarController = new this.web3.eth.Contract(ethRegistrarControllerABI, this.address);
   }
@@ -25,6 +29,17 @@ class ETHRegistrarController {
       const commit = await this.ethRegistrarController.methods.commitments(commitment).call();
 
       return commit;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async setCommit(commitment) {
+    try {
+      let byteData = "0x" +
+        abi.methodID("commit", ["bytes32"]).toString("hex") +
+        abi.rawEncode(["bytes32"], [commitment]).toString("hex");
+      return byteData;
     } catch (err) {
       console.log(err);
     }
@@ -115,6 +130,28 @@ class ETHRegistrarController {
       const makeCommitment = await this.ethRegistrarController.methods.makeCommitment(name, owner, this.web3.utils.sha3(secret)).call();
 
       return makeCommitment;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async setRenew(name, duration) {
+    try {
+      let byteData = "0x" +
+        abi.methodID("renew", ["string", "uint"]).toString("hex") +
+        abi.rawEncode(["string", "uint"], [name, duration]).toString("hex");
+      return byteData;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async setRegister(name, owner, duration, secret) {
+    try {
+      let byteData = "0x" +
+        abi.methodID("register", ["string", "address", "uint", "bytes32"]).toString("hex") +
+        abi.rawEncode(["string", "address", "uint", "bytes32"], [name, owner, duration, this.web3.utils.sha3(secret)]).toString("hex");
+      return byteData;
     } catch (err) {
       console.log(err);
     }
