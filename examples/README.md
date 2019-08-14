@@ -18,7 +18,8 @@ node {path}/index.js
 Get resolver address by ENS.
 
 #### Example
-```
+
+```javascript
 (async () => {
   try {
     const resolver = await bns.ENSResolver.getResolver('facebook.eth');

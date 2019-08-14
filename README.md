@@ -11,7 +11,7 @@ npm install bns-client
 
 ## Usage
 
-```
+```javascript
 let BNS = require('bns/lib/BNS').default;
 let bns = new BNS(); 
 ```
