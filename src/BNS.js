@@ -21,3 +21,4 @@ class BNS {
 }
 
 export default BNS;
+
