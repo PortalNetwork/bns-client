@@ -7,6 +7,8 @@ class ShortNameAuctionController {
   constructor(config) {
     if(!(config && config.provider && config.provider !== '')) {
       this.provider = 'https://mainnet.infura.io';
+    } else {
+      this.provider = config.provider;
     }
 
     this.web3 = new Web3(this.provider);

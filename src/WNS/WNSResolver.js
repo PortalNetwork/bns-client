@@ -8,6 +8,8 @@ class WNSResolver {
   constructor(config) {
     if(!(config && config.provider && config.provider !== '')) {
       this.provider = 'http://139.59.44.13:9000/node/5c9a341860626f3d2aad1dc0';
+    } else {
+      this.provider = config.provider;
     }
 
     this.web3 = new Web3(this.provider);

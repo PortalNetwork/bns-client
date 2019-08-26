@@ -455,6 +455,8 @@ class ECNSResolver {
   constructor(config) {
     if(!(config && config.provider && config.provider !== '')) {
       this.provider = 'https://etc-parity.0xinfra.com';
+    } else {
+      this.provider = config.provider;
     }
 
     this.web3 = new Web3(this.provider);

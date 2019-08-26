@@ -1,6 +1,8 @@
 "use strict"
 const BNS = require("../../../lib/BNS").default;
-const bns = new BNS();
+const bns = new BNS({
+  network: 3
+});
 
 async function registry() {
   try {

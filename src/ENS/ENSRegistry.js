@@ -207,11 +207,30 @@ class ENSRegistry {
   constructor(config) {
     if(!(config && config.provider && config.provider !== '')) {
       this.provider = 'https://mainnet.infura.io';
+    } else {
+      this.provider = config.provider;
+    }
+
+    if(!(config && config.network && config.network > 0)) {
+      this.network = 1;
+    } else {
+      this.network = config.network;
     }
 
     this.web3 = new Web3(this.provider);
 
-    this.address = '0x314159265dD8dbb310642f98f50C066173C1259b';
+    if (this.network === 1) {
+      this.address = '0x314159265dd8dbb310642f98f50c066173c1259b'
+    } else if (this.network === 3) {
+      this.address = '0x112234455c3a32fd11230c42e7bccd4a84e02010'
+    } else if (this.network === 4) {
+      this.address = '0xe7410170f87102df0055eb195163a03b7f2bff4a'
+    } else if (this.network === 5) {
+      this.address = '0x112234455c3a32fd11230c42e7bccd4a84e02010'
+    } else {
+      this.address = '0x314159265dd8dbb310642f98f50c066173c1259b'
+    }
+
     this.registry = new this.web3.eth.Contract(registryABI, this.address);
   }
 
