@@ -2,7 +2,7 @@
   "name": "bns-client",
   "version": "0.1.7",
   "description": "bns client",
-  "main": "index.js",
+  "main": "./lib/BNS.js",
   "scripts": {
     "build": "babel src/ -d lib/",
     "test": "nyc --reporter=text mocha --require babel-core/register --timeout 5000"
