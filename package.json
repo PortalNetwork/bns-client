@@ -1,6 +1,6 @@
 {
   "name": "bns-client",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "bns client",
   "main": "./lib/BNS.js",
   "scripts": {
