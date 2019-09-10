@@ -9,12 +9,33 @@ Use this commands in the console:
 npm install bns-client
 ```
 
+or use `<script></script>` to import
+
+```html
+<script src="BNS.js"></script>
+```
+
 ## Usage
 
 ```javascript
 let BNS = require('bns/lib/BNS').default;
 let bns = new BNS(); 
 ```
+
+or 
+
+```html
+<script>
+  var BNS = require('BNS');
+
+  var bns = new BNS.default({
+    restURL: `https://mainnet.infura.io`,
+  });
+  bns.ENSRegistry.getOwner('facebook.eth').then(function(owner) {
+    document.getElementById("owner").innerHTML = owner;
+  });
+</script>
+````
 
 ## Example for all methods
 

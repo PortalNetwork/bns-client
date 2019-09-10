@@ -18,13 +18,16 @@ node {path}/index.js
 - [WNS Registry](WNS/Registry/index.js)
 - [WNNS Resolver](WNS/Resolver/index.js)
 
+## HTML examples
+
+- [HTML](html/index.html)
 
 ## ENS Registry 
 
 ### getResolver
 Get resolver address by ENS.
 
-#### Example
+#### Function Example
 
 ```javascript
 const config = {
@@ -41,4 +44,21 @@ const bns = new BNS(config);
     console.error(error);
   }
 })()
+```
+
+#### HTML Example
+
+```html
+<script src="../../dist/BNS.js"></script>
+<script>
+  var BNS = require('BNS');
+  
+  // initial BNS with configuration
+  var bns = new BNS.default({
+    restURL: `https://mainnet.infura.io`, // Set provider endpoint
+  });
+  bns.ENSRegistry.getOwner('facebook.eth').then(function(owner) {
+    document.getElementById("owner").innerHTML = owner;
+  });
+</script>
 ```
