@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script src="../../dist/BNS.js"></script>
+    <script>
+      // require library
+      var BNS = require('BNS');
+      
+      // initial BNS with configuration
+      var bns = new BNS.default({
+        restURL: `https://mainnet.infura.io`, // Set provider endpoint
+      });
+      bns.ENSRegistry.getOwner('facebook.eth').then(function(owner) {
+        document.getElementById("owner").innerHTML = owner;
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <span>facebook.eth owner: </span>
+      <span id="owner"></span>
+    </div>
+  </body>
+</html>

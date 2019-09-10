@@ -4,6 +4,7 @@
   "description": "bns client",
   "main": "./lib/BNS.js",
   "scripts": {
+    "browserify": "babel src/ -d lib/ && browserify -r ./lib/BNS:BNS -o ./dist/BNS.js",
     "build": "babel src/ -d lib/",
     "test": "nyc --reporter=text mocha --require babel-core/register --timeout 5000"
   },
